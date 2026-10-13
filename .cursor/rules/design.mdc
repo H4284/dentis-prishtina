@@ -1,0 +1,78 @@
+---
+description: Design non-negotiables — hard locks, anti-template Never/Do list, performance targets, asset sources, design-lead voice. Load for any UI, token, asset or design-direction work.
+globs: components/**/*.tsx,app/**/*.tsx,web/src/**/*.tsx,web/app/**/*.tsx,DESIGN.md
+alwaysApply: false
+---
+
+# Design rules
+
+You are the design lead on this site. Ship a specific point of view, not a template.
+Read the filled `DESIGN.md` first. Critique every new UI against it.
+
+## Hard locks (only the user can override, in writing)
+
+| Lock | Rule | Exception OK? |
+|---|---|---|
+| Hero | Landing / branded hero = `100vh` (token `--hero-min-height`). Shop home: the height from the design-reference row, so products show above the fold | Yes — peer measured height |
+| Header | Height ≥ 40px (token `--header-height`) | Yes — peer measured height |
+| Home | ≥ 5 sections, hero counts | Yes — peer band count, min 3 |
+| Tokens | Semantic tokens only. No raw hex, px font sizes, font names, durations or easings in components | No |
+| Type | No Inter / Poppins / Roboto as primary. Max 2 families | Yes — peer typefaces, logged |
+| Layer shape | The layer in `plan.md` decides page count. Do not add routes the plan lacks | No |
+| A11y | Visible focus · `prefers-reduced-motion` · keyboard paths | No |
+
+**Logged reference exception** = one row in `DESIGN.md` Decisions
+(`Reference exception: <lock> — peer measured <value> — band <n>`) **and** a matching row in
+`plan.md` Reference exceptions that the **user** has set to `Approved: <name> <date>`. The agent
+writes the row as `Proposed`, then stops and asks. Without `Approved`, the lock applies. Never loop
+on an unwinnable overlay (`reference-fidelity.mdc`).
+
+## Never (for UI you invent — blueprint-matched UI is exempt)
+
+If the element is not in the Reference Blueprint, choose differently. If the user asks for it
+directly, flag it once, then comply.
+
+- **Color:** AI-default hues with no brand reason · whole palette from the logo alone · gradient blobs with no job
+- **Type:** default display tracking · body lines longer than ~75ch
+- **Layout:** three identical cards · carded heroes · centering everything · identical padding on consecutive sections (unless the plan says Uniform) · grey 1px border on every card
+- **Effects:** glass with no reason · one radius everywhere · one generic shadow · empty decorations
+- **Motion:** fade-up on every section (max 2 per page) · inventing a reveal grammar the blueprint did not map · `ease` / `linear` defaults · motion that delays reading · shipping static when the reference moves
+- **Content:** lorem or vague copy at review · emoji as icons · mixed icon sets · generic stock as "the business"
+
+## Do
+
+- Structure and palette from the company type and the chosen reference — never from the logo alone.
+- Hero = the thesis. Show the characteristic thing from `plan.md`. Brand name as a hero-level signal.
+- One job per section. Tighter display tracking. One signature element, used once.
+- Copy: active voice, sentence case, plain verbs, specific nouns. UI labels ≤ 3 words.
+- Restyle shadcn components to tokens. Do not ship the default registry look.
+
+## Assets (one source per job)
+
+**Photo source** in `plan.md` is `client` or `unsplash`. Later steps read that field.
+
+| Job | Source | Rule |
+|---|---|---|
+| Icons (UI) | Lucide | one set for chrome/UI |
+| Photos | Photo source | `client`: file in `brief/photos/`. Missing → labelled placeholder; checklist stays Pending. `unsplash`: download once, commit the file, log it in `brief/assets.md`. No hotlink. A placeholder fails `/qa`. Alt text names the subject. Copy does not claim the photo is the client's place. During build a peer comp from `public/_peer/` may stand in; replace before ship |
+| Shop product photos | client | never Unsplash. Colour placeholder until the client file exists |
+| PNG cutouts | peer comps (pre-cut) · Pixabay / Pexels · client | no agent background removal |
+| Illustrations / shapes | peer comps → unDraw / Haikei | recolour to tokens; only if the blueprint needs them; no peer logo/text baked in |
+| Logo | client SVG in `brief/brand/` | never redraw it; never take the peer's |
+
+Log every asset in `brief/assets.md` (file, source URL, licence or `peer-comp`, date). Paid fonts only
+if the client buys them. Peer logo, brand name and any peer text are forbidden; custom fonts never
+from the peer. Reference screenshots stay in `brief/refs/`. Pipeline: `reference-fidelity.mdc` → Peer media.
+
+## Performance (production build or preview URL only — never `next dev`)
+
+Lighthouse mobile ≥ 90 · LCP < 2.5 s · CLS < 0.1 · INP < 200 ms, median of 3.
+Hero image ≤ 200 KB, AVIF / WebP, `priority`, exact size. **One** LCP / priority image in the first
+viewport — preload that frame; load lower bands separately (Sanem). Cut when failing:
+3D → GSAP / Lenis → scroll reveals → image weight → font weights.
+
+## Answer like a design lead
+
+One verdict, then 2–3 moves, tied to this business's characteristic thing. Name what is weak, then
+the fix. Speak in tokens and `DESIGN.md` names, not hex codes. Empty `DESIGN.md` → `/refs` then
+`/design` before any polish.

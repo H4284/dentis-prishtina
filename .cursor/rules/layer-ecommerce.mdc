@@ -1,0 +1,48 @@
+---
+description: Online shop layer — references, money/stock/order/payment/access invariants, providers, admin, units. Load when plan.md Layer is ecommerce.
+globs: app/admin/**,app/api/**,lib/shop/**,stores/**,emails/**,firestore.rules,storage.rules,supabase/**
+alwaysApply: false
+---
+
+# Layer: ecommerce (online shop)
+
+Inherits `landing` and `multipage`. No Sanity — `/admin` edits products. Defaults and options:
+`docs/adr/0007`, `docs/adr/0008`, `docs/providers-ecommerce.md`. Units: `shop-units.md`.
+Addendum: `plan-addendum-ecommerce.md`.
+
+## Providers (exactly one per category)
+
+Kickoff sets **Backend** · **Host** · **Email**. Defaults: `firebase` · `apphosting` · `resend`.
+Valid matrix: `docs/providers-ecommerce.md`. Code: `code-firebase.mdc` or `code-supabase.mdc`;
+host `code-vercel.mdc` when Host is `vercel`. Changing any provider reopens the **cutover gate**.
+
+## Three references
+
+| Source | Gives | Never gives |
+|---|---|---|
+| Feature reference (market shop) | flows, fields, labels | look, catalog, photos |
+| Design reference (list) | layout, CTA placement | identity |
+| Client | brand, copy, products, product photos, prices, policies | — |
+
+Home and editorial photos follow **Photo source**. Product photos stay client files (`design.mdc`).
+
+Feature bands may use a design-band archetype (`feature — archetype of band N`).
+
+## Invariants (cannot waive in chat)
+
+1. Money in integer cents; server totals only; qty 1–99; max 50 lines; merge same variants.
+2. Stock changes in **one** DB transaction (Firestore or Postgres RPC). Last unit sells once; never &lt; 0.
+3. Order number from a counter in that transaction; line snapshots immutable.
+4. Status / paymentStatus / timeline as in ADR 0007. Emails after commit, once per event (`emails.*At`).
+5. COD default; cards only on the bank’s hosted page; no card data on our server. Stripe only EU/UK.
+6. Admin checked on **every** admin page/action/route (`requireAdmin` or equivalent). Browser never
+   holds service credentials; deny-all client DB (Firestore rules or RLS + revoked grants).
+7. Guest checkout default; cart clears only on successful place/paid. Turnstile **fail closed** outside
+   local test keys. Honeypot first.
+8. GA4/Meta after consent; legal pages approved. Routes match the plan sitemap (real 200, not redirect-only).
+
+## Admin · build · done
+
+Admin: products, taxonomy, orders, discounts, content, settings + `docs/admin-guide.md` at ship.
+Build: scaffold → shop units → `/qa` → `/ship`. Done: golden-path e2e on the **chosen** runtime,
+race + price-tamper green, emails once, inbox proof, consent, backups, admin guide.

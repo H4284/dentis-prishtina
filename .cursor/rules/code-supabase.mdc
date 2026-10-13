@@ -1,0 +1,51 @@
+---
+description: Supabase backend for ecommerce — Postgres, Auth, Storage, RLS, SSR sessions, images, CI. Load when plan.md Backend is supabase.
+globs: lib/supabase/**,lib/shop/**,lib/images/**,app/api/**,app/admin/**,supabase/**,scripts/**,tests/**
+alwaysApply: false
+---
+
+# Supabase (ecommerce backend option)
+
+Use only when `plan.md` → Backend is **`supabase`**. Host must be **`vercel`** (`docs/adr/0008`).
+Invariants: `layer-ecommerce.mdc`. Recipe: `recipe-ecommerce-supabase.md`.
+
+## Shape
+
+```
+lib/supabase/server.ts   createServerClient — server-only, user session
+lib/supabase/admin.ts    service role — server-only; orders, stock, admin writes
+lib/supabase/client.ts   browser Auth only (no direct table writes from the client)
+supabase/migrations/     SQL in git; apply with supabase db push / CI
+```
+
+## Access
+
+- RLS on for every shop table. Prefer **revoke** anon/authenticated grants; allow only through
+  policies you wrote. “No policy” is not a security model.
+- Storefront and checkout use server code. The browser never holds the service role key.
+- Admin role: `profiles.is_admin` (or equivalent) checked on the **server** on every admin page,
+  action and route — same rule as Firebase `requireAdmin()`.
+- Sessions: `@supabase/ssr` cookie helpers. Never put access/refresh tokens in a custom cookie.
+
+## Orders and stock
+
+- One Postgres transaction / RPC for place-order: settings, prices, discount, stock, order row,
+  counter. Last unit sells once. Stock never below 0.
+- Line snapshots on the order. Cancel returns stock once when `stock_taken`.
+- Emulator equivalent: local Supabase (`supabase start`) + seed. CI runs against that stack, **not**
+  Firebase emulators.
+
+## Images
+
+Same **image contract** as `code-firebase.mdc` → Images (widths, `sizes`, orientation, GET cache).
+Upload via sharp → Storage public paths; loader only advertises uploaded widths.
+
+## Email and secrets
+
+- Resend or EmailJS per plan — send on the server after the transaction commits.
+- Secrets: `SUPABASE_SERVICE_ROLE_KEY`, `TURNSTILE_SECRET_KEY`, `ORDER_LINK_SECRET`, email keys.
+  Never in `NEXT_PUBLIC_*` except the anon URL/key.
+
+## Cutover
+
+Leaving Firebase for Supabase reopens the cutover gate (`docs/providers-ecommerce.md`).

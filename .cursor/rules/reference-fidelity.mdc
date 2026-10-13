@@ -1,0 +1,88 @@
+---
+description: Reference fidelity — layout, interaction, motion binding; peer visual comps OK; never peer logo/text. Overlay gate and measures. Load for /refs, /build, /qa and layout disputes.
+alwaysApply: false
+---
+
+# Reference fidelity (hard)
+
+The user picks one reference site from the top 5 (`/refs`). From then on its **layout**,
+**interaction model** and **motion driver** are binding. Matching mood, palette or fonts is **not** a pass.
+
+**Keep:** section order, archetypes, element positions, media aspect and side, layered-media count,
+CTA count and placement, signature layout devices, motion driver + role.
+**Swap:** colors, logo, **all text/copy**, animation **implementation** (rebuild with `motion` —
+never paste reference animation JS).
+**Peer media (comp only):** photos, illustrations, textures, icons, shapes, backgrounds, video,
+layered media. Capture → `brief/refs/<slug>/assets/` → copy to `public/_peer/` for build/overlay.
+**Never take:** logo, brand name, any text (headlines, body, prices, testimonials, NAP), custom fonts.
+Replace comps and delete `public/_peer/` before ship. Peer media in production = Blocker (user
+override → log acceptance in `plan.md` Ops).
+
+Fail words: "inspired by" · "same vibe" · "layout language" · "close enough" · "static is fine" ·
+"layout first, motion later" · "skip animations".
+
+## Blueprint row (`plan.md`, one per band, filled by `/refs`)
+
+| # | Band + archetype | Measurements | Interaction | Motion | CTA | Do not invent |
+|---|---|---|---|---|---|---|
+| 1 | hero — split | media right, 55/45, aspect 4:5, text left | static | none | 2: primary + text link | no centred hero, no card frame |
+
+**Measure the live page.** Prefer Playwright `getComputedStyle`
+(`.cursor/skills/build/references/peer-extract.md`). Persist raw px to
+`brief/refs/<slug>/measures/<band>.md` before `@theme` tokens. Raw px in components = fail.
+Also read: layered media count, interaction model, motion (none / reveal / sticky / scrub / hover / load).
+
+## Interaction + motion
+
+Answer **scroll / click / hover / time / static** before coding. Scroll first; then click/hover.
+Wrong driver = Blocker. Motion ≠ `none` → before→after at 375 + 1440 → `brief/refs/<slug>/states/`.
+Rebuild with our stack; soft-pass "overlay OK so motion optional" = fail. Honor `prefers-reduced-motion`.
+
+## Peer media pipeline
+
+1. Discover layers (`peer-extract.md`). Skip logos and assets that are mostly peer text.
+2. Save under `brief/refs/<slug>/assets/`. If Playwright cannot save (e.g. CSS-only background), run
+   the project copy of `templates/scripts/fetch-peer-asset.mjs` (scaffold puts it in `scripts/`).
+3. Log each source URL in `brief/assets.md`. Copy into `public/_peer/` (gitignored) for comps + overlay.
+4. Before ship: replace with client/licensed media; delete `public/_peer/`.
+
+## Per-band check (`/build`)
+
+1. Open the reference PNGs (`brief/refs/<ref>/…-band-N-375.png`, `-1440.png`). Missing → stop; run
+   `/refs` step 3. A shop feature band (`feature — archetype of band N`) uses band N's screenshots
+   (`layer-ecommerce.mdc`).
+2. Read the row: measurements, interaction, motion, CTA, Do not invent.
+3. Build with tokens; peer comps from `public/_peer/` OK. Screenshot → `.qa/build/<unit>-{375,1440}.png`.
+4. **Overlay gate (required).** Copy the band PNG into `public/_peer/` and run the overlay recipe
+   (`.cursor/skills/build/references/peer-extract.md` § 5): it lays the PNG over the running build with
+   `mix-blend-mode: difference` and screenshots `.qa/build/overlay-<unit>-{375,1440}.png`. Near-black =
+   aligned. Bright structure edges = fail. Brand-swap brightness (our colors/copy/logo) is expected.
+   Missing overlay = do not show.
+5. A labelled placeholder (client photo pending) is not a fidelity fail. **Photo source** `unsplash`:
+   a placeholder still fails `/qa` (`design.mdc` → Assets).
+
+## Logged reference exception
+
+Hard lock (`design.mdc` Exception OK) fights the peer → log in `DESIGN.md` Decisions **and**
+`plan.md` Reference exceptions as `Proposed`, stop looping, and ask the user. Only the user writes
+`Approved: <name> <date>`. Until then the lock applies.
+
+## Known failures (do not repeat)
+
+| Failure | Fix |
+|---|---|
+| Mood matches, structure does not | same archetype and measurements as the row |
+| Built from memory, PNG not open | open the PNGs first |
+| Dual CTAs stacked at 375, reference keeps them inline | measure the mobile crop |
+| Extra band the reference lacks | blueprint bands only |
+| Chrome pad stacked / opaque wash / gutter eats max-width | count clearance once; transparent peer section; content-box width |
+| Inner W×H pass; placement fails | log band `top`/`left` |
+| Asset chase when structure is wrong | matching checksum → debug structure |
+| Home-only screenshots | every live Sitemap route |
+| Click UI when peer is scroll-driven | rewrite the driver |
+| One image; peer has layered overlays | re-run asset discovery; capture every layer |
+| Static build; peer moves | motion column + rebuild |
+| Overlay unwinnable (lock vs peer) | logged reference exception |
+| Peer comps / `public/_peer/` in production | replace; delete `_peer/` |
+
+Story: `docs/lessons.md` · project `LESSONS.md`.

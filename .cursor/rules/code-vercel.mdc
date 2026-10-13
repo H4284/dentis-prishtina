@@ -1,0 +1,41 @@
+---
+description: Vercel hosting for ecommerce server apps — Next config, env, previews, CSP notes. Load when plan.md Host is vercel.
+globs: next.config.ts,vercel.json,.github/workflows/**
+alwaysApply: false
+---
+
+# Vercel (ecommerce host option)
+
+Use only when `plan.md` → Host is **`vercel`**. Backend is `firebase` or `supabase` (`docs/adr/0008`).
+Cloudflare keeps DNS when the client uses it; Vercel serves the app.
+
+## Next.js
+
+- `output: "standalone"` (or Vercel’s default Node server — do not use static `output: "export"` for shops).
+- No access control only in `proxy.ts` / middleware — every admin and account path still calls
+  `requireAdmin()` / `requireUser()` (or Supabase server checks).
+- Preview URL per branch is allowed. Production deploys from `main` after Gate 2.
+- `allowedDevOrigins` includes both `localhost` and `127.0.0.1` so local login hydrates (Sanem lesson).
+
+## Env and secrets
+
+- Project → Settings → Environment Variables. Staging and Production separated.
+- Same secret **names** as the Firebase recipe where they apply (`TURNSTILE_*`, `ORDER_LINK_SECRET`,
+  email keys, bank keys). Never commit values.
+- `NEXT_PUBLIC_SITE_URL` matches the deployment that receives the traffic.
+
+## CSP and hardening
+
+- `shop:hardening` builds the CSP allow-list from the **active** stack (Vercel, Supabase or Firebase,
+  Turnstile, bank endpoint, analytics). Do not leave Firebase hosts in CSP after a Supabase cutover.
+
+## Deploy
+
+- Connect the GitHub repo. Production: manual promote or protected `main` after `/ship` go.
+- Custom domain on Vercel; Cloudflare DNS only if proxied records break cookies — prefer DNS-only
+  for the apex that serves the shop when session cookies fail behind a proxy.
+
+## Cutover
+
+Moving off App Hosting reopens the cutover gate (`docs/providers-ecommerce.md`). CI and e2e must
+hit the Vercel (or local Next) runtime that matches production, not a retired host.
