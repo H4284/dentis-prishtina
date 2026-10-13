@@ -64,6 +64,8 @@
   --space-band-tight: var(--space-8);
   --space-band-mid: var(--space-16);
   --space-band-airy: var(--space-24);
+  --space-band-video-top: clamp(12rem, 25vw, 22.5rem);
+  --space-band-video-x: clamp(0.75rem, 3.3vw, 3rem);
   --space-band-split-y: 1.4rem;
   --space-band-split-x: clamp(4rem, 8vw, 7.2rem);
   --space-split-gap: 4.5rem;

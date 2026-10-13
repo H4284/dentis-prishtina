@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/blocks/hero/hero";
+import { VideoIntro } from "@/components/blocks/video-intro/video-intro";
 import { home } from "@/content/home";
 import { site } from "@/content/site";
 
@@ -13,6 +14,7 @@ export default function HomePage() {
   return (
     <main id="main">
       <Hero />
+      <VideoIntro />
     </main>
   );
 }
