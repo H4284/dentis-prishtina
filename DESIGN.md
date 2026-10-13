@@ -157,6 +157,9 @@ Decision rules. Each one must be able to reject a future choice.
   --space-band-stack-pl: clamp(1rem, 12vw, 10.8125rem);
   --space-band-stack-pr: clamp(1rem, 8vw, 7.1875rem);
   --max-w-service-stack: 49.75rem;
+  --min-height-closing-track: 86.25rem;
+  --min-height-closing-track-lg: 112.5rem;
+  --aspect-closing-photo: 3 / 4;
 }
 ```
 

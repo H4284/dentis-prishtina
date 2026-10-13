@@ -45,4 +45,8 @@ export const home = {
     ctaLabel: "Begin your journey",
     ctaHref: "/#contact",
   },
+  closing: {
+    headline: "Ready for a calm first visit?",
+    subline: "Call or message us — we will find a time that feels easy.",
+  },
 } as const;

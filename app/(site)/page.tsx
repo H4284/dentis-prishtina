@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Approach } from "@/components/blocks/approach/approach";
+import { ClosingContact } from "@/components/blocks/closing-contact/closing-contact";
 import { CtaStrip } from "@/components/blocks/cta-strip/cta-strip";
 import { Hero } from "@/components/blocks/hero/hero";
 import { Service01 } from "@/components/blocks/service-01/service-01";
@@ -27,6 +28,7 @@ export default function HomePage() {
       <Service02 />
       <Service03 />
       <Service04 />
+      <ClosingContact />
     </main>
   );
 }
