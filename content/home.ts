@@ -31,4 +31,11 @@ export const home = {
     secondaryCtaLabel: "Explore",
     secondaryCtaHref: "/#about",
   },
+  service03: {
+    index: "03",
+    title: "Natural smile design",
+    body: "Smile work guided by your face, your bite, and a result that still feels like you.",
+    ctaLabel: "Learn more",
+    ctaHref: "/#contact",
+  },
 } as const;
