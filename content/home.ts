@@ -15,4 +15,11 @@ export const home = {
     headline:
       "Calm dental care in Prishtina, shaped around the first visit without fear.",
   },
+  service01: {
+    index: "01",
+    title: "Calm first visits",
+    body: "A gentle first appointment — clear talk, no rush, and a plan you can trust.",
+    ctaLabel: "Discover",
+    ctaHref: "/#contact",
+  },
 } as const;

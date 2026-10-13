@@ -152,6 +152,8 @@ Decision rules. Each one must be able to reject a future choice.
   --min-height-approach: 20.3125rem;
   --min-height-approach-lg: 33.75rem;
   --max-w-approach: 56.25rem;
+  --aspect-service-portrait: 7 / 10;
+  --aspect-service-portrait-sm: 14 / 25;
 }
 ```
 
