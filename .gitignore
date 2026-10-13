@@ -4,6 +4,7 @@ node_modules/
 # Next.js static export / Cloudflare
 .next/
 out/
+out-export/
 .wrangler/
 .open-next/
 .dev.vars

@@ -4,7 +4,7 @@ import { MobileNav } from "@/components/layout/mobile-nav";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-30 border-b border-outline/60 bg-surface/90 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-30 border-b border-outline/40 bg-surface/70 backdrop-blur-sm">
       <div className="flex h-[var(--header-height)] items-center justify-between px-[var(--space-gutter)]">
         <Link
           href="/"
