@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     ".cursor/**",
     ".wrangler/**",
+    "tmp/**",
+    ".wt-*/**",
   ]),
 ]);
 

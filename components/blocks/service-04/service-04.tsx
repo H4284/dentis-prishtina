@@ -1,7 +1,4 @@
-"use client";
-
 import { ArrowRight } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
 import { MediaPlaceholder } from "@/components/media-placeholder";
 import { home } from "@/content/home";
 
@@ -10,23 +7,12 @@ import { home } from "@/content/home";
  * Labelled placeholder until client media arrives.
  */
 export function Service04() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <section
       className="bg-transparent px-[var(--space-gutter)] py-[var(--space-band-split-y)] md:px-[var(--space-band-split-x)]"
       aria-labelledby="home-service-04-heading"
     >
-      <motion.div
-        className="mx-auto flex w-full max-w-[75rem] flex-col items-stretch gap-[var(--space-10)] md:flex-row md:items-center md:gap-[var(--space-split-gap)]"
-        initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{
-          duration: reduceMotion ? 0 : 0.42,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-      >
+      <div className="mx-auto flex w-full max-w-[75rem] flex-col items-stretch gap-[var(--space-10)] md:flex-row md:items-center md:gap-[var(--space-split-gap)]">
         <div className="relative order-2 mx-auto w-full max-w-[16rem] overflow-hidden rounded-[var(--radius-md)] bg-surface-container aspect-[var(--aspect-service-portrait-sm)] md:order-1 md:mx-0 md:max-w-none md:w-[36%] md:shrink-0 md:aspect-[var(--aspect-service-portrait)]">
           <MediaPlaceholder label="Service film — pending" />
         </div>
@@ -52,7 +38,7 @@ export function Service04() {
             <ArrowRight className="size-4" aria-hidden />
           </a>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

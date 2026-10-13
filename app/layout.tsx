@@ -9,15 +9,20 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const fraunces = Fraunces({
-  subsets: ["latin", "latin-ext"],
+  // Brand headline is Latin-only; keeps the LCP font file small.
+  subsets: ["latin"],
+  weight: ["400"],
   variable: "--font-fraunces",
   display: "swap",
+  preload: true,
 });
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "600"],
   variable: "--font-source-sans",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {

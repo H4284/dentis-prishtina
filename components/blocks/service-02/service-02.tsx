@@ -1,7 +1,4 @@
-"use client";
-
 import { ArrowRight } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
 import { MediaPlaceholder } from "@/components/media-placeholder";
 import { home } from "@/content/home";
 
@@ -10,23 +7,12 @@ import { home } from "@/content/home";
  * Labelled placeholder until client media arrives.
  */
 export function Service02() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <section
       className="bg-transparent px-[var(--space-gutter)] py-[var(--space-4)] md:py-[var(--space-8)] md:pl-[var(--space-band-stack-pl)] md:pr-[var(--space-band-stack-pr)]"
       aria-labelledby="home-service-02-heading"
     >
-      <motion.div
-        className="flex w-full max-w-[var(--max-w-service-stack)] flex-col gap-[var(--space-6)] text-left md:gap-[var(--space-8)]"
-        initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{
-          duration: reduceMotion ? 0 : 0.42,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-      >
+      <div className="flex w-full max-w-[var(--max-w-service-stack)] flex-col gap-[var(--space-6)] text-left md:gap-[var(--space-8)]">
         <header>
           <p className="text-sm tracking-[0.08em] text-on-surface-muted">
             {home.service02.index}
@@ -62,7 +48,7 @@ export function Service02() {
             </a>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

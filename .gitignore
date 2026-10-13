@@ -42,7 +42,11 @@ brief/payments/
 .qa/
 .tmp-starter/
 tmp-scaffold/
+tmp/
 .playwright-mcp/
+
+# Local Windows worktree builds when `out/` is locked
+.wt-*/
 
 # Peer visual comps for build/overlay (replace before ship)
 public/_peer/
