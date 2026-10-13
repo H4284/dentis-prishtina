@@ -38,4 +38,11 @@ export const home = {
     ctaLabel: "Learn more",
     ctaHref: "/#contact",
   },
+  service04: {
+    index: "04",
+    title: "Ongoing care",
+    body: "Check-ups and hygiene that keep the calm going — small visits, clear advice, steady progress.",
+    ctaLabel: "Begin your journey",
+    ctaHref: "/#contact",
+  },
 } as const;
