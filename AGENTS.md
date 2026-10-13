@@ -15,13 +15,14 @@
    Wrong rule → `LESSONS.md`, then a brain PR. Sync: `node .cursor/brain/brain.mjs sync`.
 4. How layers work: `docs/agent-architecture.md` (in the brain) — Rules vs Skills vs this file.
 
-## Commands (fill after `/scaffold`)
+## Commands
 
 - Install: `pnpm install --frozen-lockfile`
-- Typecheck / lint / test / build: `pnpm typecheck` · `pnpm lint` · `pnpm test` · `pnpm build`
+- Dev: `pnpm dev`
+- Typecheck / lint / build / preview: `pnpm typecheck` · `pnpm lint` · `pnpm build` · `pnpm preview`
+- Cloudflare types: `pnpm cf-typegen`
 - Project gates: `node .cursor/brain/check-project.mjs`
-- Shop local (Firebase): `pnpm emulators` · `pnpm seed` · `pnpm dev`
-- Shop local (Supabase): `supabase start` · `pnpm seed` · `pnpm dev`
+
 
 ## Completion
 

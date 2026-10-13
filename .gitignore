@@ -40,6 +40,8 @@ brief/payments/
 # QA and build screenshots (reference packs in brief/refs/ ARE committed)
 .qa/
 .tmp-starter/
+tmp-scaffold/
+.playwright-mcp/
 
 # Peer visual comps for build/overlay (replace before ship)
 public/_peer/
