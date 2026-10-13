@@ -2,11 +2,12 @@
 
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import { MediaPlaceholder } from "@/components/media-placeholder";
 import { home } from "@/content/home";
 
 /**
- * Blueprint band 7 — split media right (36/64), portrait ambient video.
- * Peer film in `public/_peer/` until client media arrives.
+ * Blueprint band 7 — split media right (36/64), portrait frame.
+ * Labelled placeholder until client media arrives.
  */
 export function Service03() {
   const reduceMotion = useReducedMotion();
@@ -49,20 +50,7 @@ export function Service03() {
         </div>
 
         <div className="relative mx-auto w-full max-w-[16rem] overflow-hidden rounded-[var(--radius-md)] bg-surface-container aspect-[var(--aspect-service-portrait-sm)] md:mx-0 md:max-w-none md:w-[36%] md:shrink-0 md:aspect-[var(--aspect-service-portrait)]">
-          <video
-            className="absolute inset-0 size-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/_peer/service-03-still.png"
-          >
-            <source src="/_peer/service-03.mp4" type="video/mp4" />
-          </video>
-          <p className="pointer-events-none absolute bottom-[var(--space-3)] left-[var(--space-3)] rounded-[var(--radius-sm)] bg-surface/80 px-3 py-1 text-xs text-on-surface-muted">
-            Service film — pending
-          </p>
+          <MediaPlaceholder label="Service film — pending" />
         </div>
       </motion.div>
     </section>

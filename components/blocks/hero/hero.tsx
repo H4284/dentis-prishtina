@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { home } from "@/content/home";
 
 /**
  * Blueprint band 1 — fullscreen brand hero with scroll scrub.
- * Media: peer photo comp (+ soft shape) until client photos arrive.
+ * Media: soft shape + labelled placeholder until client photos arrive.
  */
 export function Hero() {
   const trackRef = useRef<HTMLElement>(null);
@@ -34,21 +33,11 @@ export function Hero() {
       className="relative h-[170vh]"
       aria-labelledby="home-hero-heading"
     >
-      <div className="sticky top-0 flex h-[var(--hero-min-height)] min-h-[var(--hero-min-height)] w-full items-center justify-center overflow-hidden">
-        {/* Layered media count: 1 — full-bleed photo (WebGL exception: photo + soft shape) */}
+      <div className="sticky top-0 flex h-[var(--hero-min-height)] min-h-[var(--hero-min-height)] w-full items-center justify-center overflow-hidden bg-surface">
+        {/* Layered media count: 1 — soft shape (WebGL exception) + pending label */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
-          <Image
-            src="/_peer/hero-layer.webp"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-surface/55" />
-          <div
-            className="absolute left-1/2 top-1/2 size-[min(72vw,36rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-soft/50 blur-3xl"
-          />
+          <div className="absolute inset-0 bg-surface-container/40" />
+          <div className="absolute left-1/2 top-1/2 size-[min(72vw,36rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-soft/50 blur-3xl" />
           <p className="absolute bottom-[var(--space-6)] left-[var(--space-gutter)] rounded-[var(--radius-sm)] bg-surface/80 px-3 py-1 text-xs text-on-surface-muted">
             Clinic photo — pending
           </p>

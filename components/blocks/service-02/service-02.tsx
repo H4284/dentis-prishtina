@@ -2,11 +2,12 @@
 
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import { MediaPlaceholder } from "@/components/media-placeholder";
 import { home } from "@/content/home";
 
 /**
  * Blueprint band 6 — stacked media: title → 16:9 → copy + dual CTAs.
- * Peer film in `public/_peer/` until client media arrives.
+ * Labelled placeholder until client media arrives.
  */
 export function Service02() {
   const reduceMotion = useReducedMotion();
@@ -39,20 +40,7 @@ export function Service02() {
         </header>
 
         <div className="relative w-full overflow-hidden rounded-[var(--radius-md)] bg-surface-container aspect-video">
-          <video
-            className="absolute inset-0 size-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/_peer/service-02-still.png"
-          >
-            <source src="/_peer/service-02.mp4" type="video/mp4" />
-          </video>
-          <p className="pointer-events-none absolute bottom-[var(--space-3)] left-[var(--space-3)] rounded-[var(--radius-sm)] bg-surface/80 px-3 py-1 text-xs text-on-surface-muted">
-            Service film — pending
-          </p>
+          <MediaPlaceholder label="Service film — pending" />
         </div>
 
         <div className="flex flex-col gap-[var(--space-6)]">

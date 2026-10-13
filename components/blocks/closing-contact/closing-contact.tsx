@@ -1,15 +1,15 @@
 "use client";
 
 import { MessageCircle } from "lucide-react";
-import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { MediaPlaceholder } from "@/components/media-placeholder";
 import { home } from "@/content/home";
 import { site } from "@/content/site";
 
 /**
  * Blueprint band 9 — sticky closing contact.
- * Media: peer photo + soft round shape (WebGL exception). No lead form.
+ * Media: labelled photo placeholder + soft round shape (WebGL exception). No lead form.
  */
 export function ClosingContact() {
   const trackRef = useRef<HTMLElement>(null);
@@ -81,16 +81,7 @@ export function ClosingContact() {
 
           {/* ~24% photo · aspect 0.75 — layered media 1 */}
           <div className="relative w-full max-w-[14.5rem] overflow-hidden rounded-[var(--radius-md)] bg-surface-container aspect-[var(--aspect-closing-photo)] md:w-[24%] md:max-w-none md:shrink-0">
-            <Image
-              src="/_peer/closing-photo.webp"
-              alt=""
-              fill
-              sizes="(max-width: 768px) 232px, 24vw"
-              className="object-cover"
-            />
-            <p className="pointer-events-none absolute bottom-[var(--space-3)] left-[var(--space-3)] rounded-[var(--radius-sm)] bg-surface/80 px-3 py-1 text-xs text-on-surface-muted">
-              Clinic photo — pending
-            </p>
+            <MediaPlaceholder label="Clinic photo — pending" />
           </div>
 
           {/* ~49% soft round graphic — layered media 2 (WebGL → soft shape) */}
