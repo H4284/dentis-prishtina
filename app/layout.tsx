@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { JsonLd } from "@/components/layout/json-ld";
+import { SkipLink } from "@/components/layout/skip-link";
 import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
 import "./globals.css";
@@ -35,7 +39,13 @@ export default function RootLayout({
       lang="sq"
       className={cn(fraunces.variable, sourceSans.variable, "font-sans")}
     >
-      <body className="min-h-dvh antialiased">{children}</body>
+      <body className="flex min-h-dvh flex-col antialiased">
+        <JsonLd />
+        <SkipLink />
+        <Header />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </body>
     </html>
   );
 }

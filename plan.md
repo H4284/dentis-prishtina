@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | `Planned` |
+| Status | `Building` |
 | Layer | `landing` |
 | QA | — |
 | Updated | 2026-10-13 |
