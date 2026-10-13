@@ -7,4 +7,7 @@ export const home = {
     headline: "The first visit without fear",
     subline: "A calm, modern dental clinic in Prishtina.",
   },
+  ctaStrip: {
+    eyebrow: "Filloni këtu",
+  },
 } as const;
