@@ -3,6 +3,7 @@ import { Approach } from "@/components/blocks/approach/approach";
 import { CtaStrip } from "@/components/blocks/cta-strip/cta-strip";
 import { Hero } from "@/components/blocks/hero/hero";
 import { Service01 } from "@/components/blocks/service-01/service-01";
+import { Service02 } from "@/components/blocks/service-02/service-02";
 import { VideoIntro } from "@/components/blocks/video-intro/video-intro";
 import { home } from "@/content/home";
 import { site } from "@/content/site";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <CtaStrip />
       <Approach />
       <Service01 />
+      <Service02 />
     </main>
   );
 }

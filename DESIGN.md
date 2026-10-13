@@ -154,6 +154,9 @@ Decision rules. Each one must be able to reject a future choice.
   --max-w-approach: 56.25rem;
   --aspect-service-portrait: 7 / 10;
   --aspect-service-portrait-sm: 14 / 25;
+  --space-band-stack-pl: clamp(1rem, 12vw, 10.8125rem);
+  --space-band-stack-pr: clamp(1rem, 8vw, 7.1875rem);
+  --max-w-service-stack: 49.75rem;
 }
 ```
 

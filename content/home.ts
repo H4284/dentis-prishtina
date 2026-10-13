@@ -22,4 +22,13 @@ export const home = {
     ctaLabel: "Discover",
     ctaHref: "/#contact",
   },
+  service02: {
+    index: "02",
+    title: "Thoughtful restorations",
+    body: "Restorative care planned as one calm path — function first, then a smile that feels like yours.",
+    primaryCtaLabel: site.primaryCta.label,
+    primaryCtaHref: site.primaryCta.href,
+    secondaryCtaLabel: "Explore",
+    secondaryCtaHref: "/#about",
+  },
 } as const;
