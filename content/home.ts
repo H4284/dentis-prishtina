@@ -10,4 +10,9 @@ export const home = {
   ctaStrip: {
     eyebrow: "Filloni këtu",
   },
+  approach: {
+    eyebrow: "Qasja jonë",
+    headline:
+      "Calm dental care in Prishtina, shaped around the first visit without fear.",
+  },
 } as const;

@@ -149,6 +149,9 @@ Decision rules. Each one must be able to reject a future choice.
   /* chrome */
   --hero-min-height: 100vh;
   --header-height: 4.5rem;
+  --min-height-approach: 20.3125rem;
+  --min-height-approach-lg: 33.75rem;
+  --max-w-approach: 56.25rem;
 }
 ```
 

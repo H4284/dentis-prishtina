@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Approach } from "@/components/blocks/approach/approach";
 import { CtaStrip } from "@/components/blocks/cta-strip/cta-strip";
 import { Hero } from "@/components/blocks/hero/hero";
 import { VideoIntro } from "@/components/blocks/video-intro/video-intro";
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Hero />
       <VideoIntro />
       <CtaStrip />
+      <Approach />
     </main>
   );
 }
