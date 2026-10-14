@@ -167,15 +167,18 @@ Decision rules. Each one must be able to reject a future choice.
 
 ## Contrast
 
-WCAG 4.5:1 body · 3:1 large / UI · Verified 2026-10-13 with `culori` `wcagContrast`.
+WCAG 4.5:1 body · 3:1 large / UI · Verified 2026-10-14 with `culori` `wcagContrast` and axe on the production build.
 
 | Foreground | Background | WCAG | Pass | APCA Lc |
 |---|---|---|---|---|
 | on-surface | surface | 13.96:1 | yes | — |
 | on-surface-muted | surface | 7.12:1 | yes | — |
+| on-surface-muted | surface-warm | 6.23:1 | yes | — |
 | on-accent | accent | 5.17:1 | yes | — |
 | accent | surface | 5.10:1 | yes (large/UI) | — |
 | on-surface | surface-warm | 12.22:1 | yes | — |
+
+Verified 2026-10-14: axe `color-contrast` is clean on `/` (including the closing Book button and muted line). The 2026-10-13 fail was the closing panel at opacity 0.72, which mixed those colours with the warm ground. That opacity is gone; both pairs sit at opacity 1.
 
 ---
 
