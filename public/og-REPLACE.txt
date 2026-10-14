@@ -1,1 +1,0 @@
-OG — replace public/og.png with the real Open Graph image before ship.

@@ -17,4 +17,7 @@ committed file. Rule: `.cursor/rules/design.mdc` → Assets · `reference-fideli
 | `brief/refs/sky-clinics/assets/peer-video-svc04.png` | https://skyclinics.al/videos/767834649e73ff364ddf3bc3336cd9cc4400b458-desktop.mp4 | peer-comp | 2026-10-13 | retired 2026-10-13 — site uses labelled placeholders |
 | `brief/refs/sky-clinics/assets/peer-video-svc04.mp4` | https://skyclinics.al/videos/767834649e73ff364ddf3bc3336cd9cc4400b458-desktop.mp4 | peer-comp | 2026-10-13 | retired 2026-10-13 — site uses labelled placeholders |
 
+| `public/og.png` | generated in-repo (brand tokens · 1200×630) | brand / Thrio | 2026-10-14 | Open Graph + Twitter card |
+
 Verified 2026-10-13: `public/_peer/` removed; homepage media frames are labelled placeholders (Photo source `client`).
+Verified 2026-10-14: `public/og.png` is a real 1200×630 PNG (~32 KB); scaffold `og-REPLACE.txt` removed.

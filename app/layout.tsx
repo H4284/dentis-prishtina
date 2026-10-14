@@ -32,6 +32,27 @@ export const metadata: Metadata = {
   },
   description: site.tagline,
   metadataBase: new URL("https://dentis.example"),
+  openGraph: {
+    type: "website",
+    locale: "sq_AL",
+    siteName: site.name,
+    title: site.name,
+    description: site.tagline,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.tagline}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.name,
+    description: site.tagline,
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
